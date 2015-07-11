@@ -11,14 +11,14 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("js-data"), require("angular"), (function webpackLoadOptionalExternalModule() { try { return require("axios"); } catch(e) {} }()));
 	else if(typeof define === 'function' && define.amd)
-		define(["js-data", "angular"], function webpackLoadOptionalExternalModuleAmd(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
-			return factory(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, root["axios"]);
+		define(["js-data", "angular"], function webpackLoadOptionalExternalModuleAmd(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__) {
+			return factory(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, root["axios"]);
 		});
 	else if(typeof exports === 'object')
 		exports["jsDataAngularModuleName"] = factory(require("js-data"), require("angular"), (function webpackLoadOptionalExternalModule() { try { return require("axios"); } catch(e) {} }()));
 	else
 		root["jsDataAngularModuleName"] = factory(root["JSData"], root["angular"], root["axios"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_3__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -69,8 +69,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/*jshint loopfunc:true*/
 	var JSData = __webpack_require__(1);
-	var DSHttpAdapter = __webpack_require__(4);
-	var angular = __webpack_require__(2);
+	var DSHttpAdapter = __webpack_require__(2);
+	var angular = __webpack_require__(4);
 
 	var DSUtils = JSData.DSUtils;
 	var DSErrors = JSData.DSErrors;
@@ -104,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var Adapter = undefined;
 
 	  try {
-	    Adapter = __webpack_require__(3)(adapter.project);
+	    Adapter = __webpack_require__(5)(adapter.project);
 	  } catch (e) {}
 
 	  if (!Adapter) {
@@ -287,7 +287,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    // Hook into the digest loop
 	    if (typeof Object.observe !== 'function' || typeof Array.observe !== 'function') {
 	      $rootScope.$watch(function () {
-	        return store.observe.Platform.performMicrotaskCheckpoint();
+	        return new Date().getTime() >> 8;
+	      }, function () {
+	        return store.digest();
 	      });
 	    }
 
@@ -315,37 +317,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ },
 /* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var map = {};
-	function webpackContext(req) {
-		return __webpack_require__(webpackContextResolve(req));
-	};
-	function webpackContextResolve(req) {
-		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
-	};
-	webpackContext.keys = function webpackContextKeys() {
-		return Object.keys(map);
-	};
-	webpackContext.resolve = webpackContextResolve;
-	module.exports = webpackContext;
-	webpackContext.id = 3;
-
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
@@ -356,7 +333,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	var axios = null;
 
 	try {
-	  axios = __webpack_require__(5);
+	  axios = __webpack_require__(3);
 	} catch (e) {}
 
 	var DSUtils = JSData.DSUtils;
@@ -675,11 +652,36 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = DSHttpAdapter;
 
 /***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	if(typeof __WEBPACK_EXTERNAL_MODULE_3__ === 'undefined') {var e = new Error("Cannot find module \"axios\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
+	module.exports = __WEBPACK_EXTERNAL_MODULE_3__;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
+
+/***/ },
 /* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
-	if(typeof __WEBPACK_EXTERNAL_MODULE_5__ === 'undefined') {var e = new Error("Cannot find module \"axios\""); e.code = 'MODULE_NOT_FOUND'; throw e;}
-	module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
+	var map = {};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 5;
+
 
 /***/ }
 /******/ ])
