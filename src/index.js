@@ -205,7 +205,10 @@ class DSProvider {
 
       // Hook into the digest loop
       if (typeof Object.observe !== 'function' || typeof Array.observe !== 'function') {
-        $rootScope.$watch(() => store.observe.Platform.performMicrotaskCheckpoint());
+        $rootScope.$watch(
+          () => new Date().getTime() >> 8,
+          () => store.digest()
+        );
       }
 
       return store;
